@@ -3,62 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='images/Logo.png') }}">
-    <title>DCC Todo App</title>
+    <link rel="stylesheet" href="http://localhost:5000/static/css/styles.css">
+    <link rel="icon" href="http://localhost:5000/static/images/Logo.png">
+    <title>Alf's Todo List</title>
 </head>
 <body>
-    <div class="main-container">
-        <div class="header">
-            <img src="{{ url_for('static', filename='images/Logo.png')}}" alt="dcc logo" class="logo">
-            <h1>AWSCC - PUP Manila</h1>
-            <h2>DCC - Todo App</h2>
-        </div>
-
-        <div class="todo-container">
-                <div class="tbl-header">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Task ID</th>
-                        <th>Task</th>
-                        <th>Status</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                      </tr>
-                    </thead>
-                  </table>
-                </div>
-                <div class="tbl-content">
-                    <table>
-                        <tbody>
-                            {% for todo in todo_list %}
-                            <tr>
-                                <td>{{todo.task_id}}</td>
-                                <td>{{todo.task}}</td>
-                                {% if todo.status == False %}
-                                <td><label>Not Done</label></td>
-                                {% else %}
-                                <td><label>Done</label></td>
-                                {% endif %}
-                                <td><a href="/update_task/{{todo.task_id}}">Update</a></td>
-                                <td><a href="/delete_task/{{todo.task_id}}">Delete</a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-
-            <form action="/add_task" method="post">
-                <div>
-                    <label class="thick">Enter a Task</label>
-                    <input type="text" name="todo">
-                    <button class="add-button" type="submit">Add</button>
+    <div class="container">
+        <div class="todo-app">
+            <h2>
+                <img src="http://localhost:5000/static/images/Alf.png" alt="alf mascot" class="alf">
+                Alf's Todo-List 
+            </h2>
+            <form  action="/add_task" method="post">
+                <div class="row">
+                    <input type="text" id="input-box" name="task" placeholder="Add your text">
+                    <button type="submit">Add</button>
                 </div>
             </form>
+            <ul id="list-container">
+                {% for todo in todo_list %}
+                <div class="todo-item">
+                    <a href="/update_task/{{todo.task_id}}">
+                        <li class="{{ 'checked' if todo.status else 'unchecked' }}">{{todo.task}}</li>
+                    </a>
+                    <a href="/delete_task/{{todo.task_id}}" class="delete"><img src="http://localhost:5000/static/images/x.svg" alt="alf mascot" class="x-button"></a>
+                </div>
+                {% endfor %}
+            </ul>
         </div>
-
-        <img src="{{ url_for('static', filename='images/Alf.png')}}" alt="alf mascot" class="alf">
+        <img src="http://localhost:5000/static/images/Alf-Wave.png" alt="alf-wave" class="alf-wave">
     </div>
 </body>
 </html>
