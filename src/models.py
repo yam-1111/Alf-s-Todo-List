@@ -12,3 +12,7 @@
 # Imports
 
 # Create Todo class
+class Todo(db.Model):
+    task_id =  
+    task =
+    status = 
