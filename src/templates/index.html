@@ -3,24 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWSCC-PUP Manila Todo App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/Logo.png') }}">
+    <title>DCC Todo App</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="title">AWSCC-PUP Manila Todo App</h1>
-            <p class="name">By: Your Name</p>
-        </header>
+    <div class="main-container">
+        <div class="header">
+            <img src="{{ url_for('static', filename='images/Logo.png')}}" alt="dcc logo" class="logo">
+            <h1>AWSCC - PUP Manila</h1>
+            <h2>DCC - Todo App</h2>
+        </div>
 
-        <main>
-            <ul>
-                {% for todo in todos %}
-                    <li>{{ todo.task }}</li>
-                {% endfor %}
-            </ul>
-        </main>
+        <div class="todo-container">
+                <div class="tbl-header">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Task ID</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tbl-content">
+                    <table>
+                        <tbody>
+                            {% for todo in todo_list %}
+                            <tr>
+                                <td>{{todo.task_id}}</td>
+                                <td>{{todo.task}}</td>
+                                {% if todo.status == False %}
+                                <td><label>Not Done</label></td>
+                                {% else %}
+                                <td><label>Done</label></td>
+                                {% endif %}
+                                <td><a href="/update_task/{{todo.task_id}}">Update</a></td>
+                                <td><a href="/delete_task/{{todo.task_id}}">Delete</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
+            <form action="/add_task" method="post">
+                <div>
+                    <label class="thick">Enter a Task</label>
+                    <input type="text" name="todo">
+                    <button class="add-button" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <img src="{{ url_for('static', filename='images/Alf.png')}}" alt="alf mascot" class="alf">
     </div>
 </body>
 </html>
