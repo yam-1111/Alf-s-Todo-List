@@ -1,14 +1,14 @@
 # AWSCC - PUP Manila Todo API Flask
 
-This is a template for creating a Todo API using Flask. This API allows you to create, read, update, and delete todos.
+This project provides a template for creating a Todo API using Flask. The API supports operations to create, read, update, and delete todos.
 
-## Instructions
+## Getting Started
 
-Follow these steps to set up and run this project:
+These instructions will guide you to set up and run this project:
 
-1. **Create a virtual environment**
+1. **Set up a virtual environment**
 
-    Use the following command to create a new virtual environment named `.venv`:
+    Create a new virtual environment named `.venv` using the command:
 
     ```bash
     python -m venv .venv
@@ -16,71 +16,79 @@ Follow these steps to set up and run this project:
 
 2. **Activate the virtual environment**
 
-    Before you can start using the virtual environment, you need to activate it. 
+    Activate the virtual environment with the following commands:
 
-    On Windows, use:
+    For Windows:
 
     ```bash
     .venv\Scripts\activate
     ```
 
-    On Unix or MacOS, use:
+    For Unix or MacOS:
 
     ```bash
     source .venv/bin/activate
     ```
 
-3. **Install the required packages**
+3. **Install dependencies**
 
-    This project requires some packages to run. These packages are listed in the `requirements.txt` file. To install them, use:
+    Install the required packages listed in the `requirements.txt` file:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Run the application**
+4. **Launch the application**
 
-    After you've installed the required packages, you can run the application with:
+    Run the application using:
 
     ```bash
     python run.py
     ```
 
-    This will start the Flask development server, and you can access the application at `http://localhost:5000`.
+    The Flask development server starts and the application becomes accessible at `http://localhost:5000`.
 
+## Project Structure
 
-## File Structure
+Here's an overview of the project's file structure:
 
-The project has the following file structure:
+- `src`: Contains the main application code.
+- `src/static`: Houses the CSS and image files.
+- `src/templates`: Stores the HTML files.
+- `src/app.py`: Includes the main function to initiate and create the app.
+- `src/models.py`: Defines the model for the todo.
+- `src/routes.py`: Specifies the routes.
+- `run.py`: Used to run the application.
 
-- `src`: Main application code.
-- `src/static`: Contains the CSS and Images.
-- `src/templates`: Contains the HTML File.
-- `src/app.py`: Contains the main function to initiate and create the app.
-- `src/models.py`: Contains the model for the todo
-- `src/routes.py`: Contains the routes.
-- `run.py`: This file is used to run the application.
+## Tasks
 
-## Task
+Your assignment is to create routes for managing tasks:
 
-Your task is to create the following routes for managing tasks:
+1. **Add a task**
 
-1. **Adding a task**
+    Create a route to add a new task. This route should accept POST requests and take the task details as JSON in the request body.
 
-    Create a route that allows users to add a new task. This route should accept POST requests and take the task details as JSON in the request body.
+2. **Update a task**
 
-2. **Updating a task**
+    Create a route to update an existing task. This route should accept PUT or PATCH requests, take the task ID as a URL parameter, and take the new task details as JSON in the request body.
 
-    Create a route that allows users to update an existing task. This route should accept PUT or PATCH requests, take the task ID as a parameter in the URL, and take the new task details as JSON in the request body.
+3. **Change a task's status**
 
-3. **Changing the status of a task**
+    Create a route to change a task's status. This route should accept PUT or PATCH requests, take the task ID as a URL parameter, and take the new status as JSON in the request body.
 
-    Create a route that allows users to change the status of a task. This route should accept PUT or PATCH requests, take the task ID as a parameter in the URL, and take the new status as JSON in the request body.
+4. **Delete a task**
 
-4. **Deleting a task**
+    Create a route to delete a task. This route should accept DELETE requests and take the task ID as a URL parameter.
 
-    Create a route that allows users to delete a task. This route should accept DELETE requests and take the task ID as a parameter in the URL.
+Update your database model and schema as necessary to support these features.
 
-Remember to update your database model and schema as necessary to support these features.
+## Workflow 
 
-Enjoy using the AWSCC - PUP Manila - DCC: Alf's Todo List
+1. Begin by completing the tasks in app.py.
+2. Create the Todo model in models.py.
+3. Set up run.py.
+4. Before running run.py, ensure you have set up the index route to return index.html in routes.py.
+5. Create the endpoints for add_task, update_task/<int:task_id>, delete_task/<int:task_id>.
+6. Test the app.
+
+Enjoy using the AWSCC - PUP Manila - DCC: Alf's Todo List!
