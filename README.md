@@ -1,4 +1,4 @@
-# AWSCC - PUP Manila Todo API Flask
+# AWSCC - PUP Manila Alf's Todo List API
 
 This project provides a template for creating a Todo API using Flask. The API supports operations to create, read, update, and delete todos.
 
