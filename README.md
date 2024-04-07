@@ -92,3 +92,9 @@ Update your database model and schema as necessary to support these features.
 6. Test the app.
 
 Enjoy using the AWSCC - PUP Manila - DCC: Alf's Todo List!
+
+## Actual website
+
+<p align="center">
+    <img src="alf_todo.png" width="640" alt="screenshot">
+</p>

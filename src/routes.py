@@ -40,29 +40,41 @@
 """
 
 # Imports
-from flask import send_from_directory
-
+from flask import send_from_directory, render_template, request, url_for, redirect
+from src.models import Todo
+from src.app import db
 # Create a function called init_app that takes app as an argument
 def init_app(app):
     # Create a route for the index page
     @app.route("/")
     def index():
-        pass
+        todo_list = Todo.query.all()
+        return render_template("index.html", todo_list=todo_list)
     
     # Create a route for the add task
     @app.route("/add_task", methods=["POST"])
     def add_task():
-        pass
+        task = request.form.get("task")
+        new_todo = Todo(task=task)
+        db.session.add(new_todo)
+        db.session.commit()
+        return redirect(url_for("index"))
 
     # Create a route for the update task
     @app.route("/update_task/<int:task_id>")
     def update_task(task_id):
-        pass
+       todo = Todo.query.get(task_id)  
+       todo.status = not todo.status  
+       db.session.commit()  
+       return redirect(url_for("index"))
 
     # Create a route for the delete task
     @app.route("/delete_task/<int:task_id>")
     def delete_task(task_id):
-        pass
+       todo = Todo.query.get(task_id)  # Get the task by its ID
+       db.session.delete(todo)  # Delete the task
+       db.session.commit()  # Commit the changes
+       return redirect(url_for("index")) 
 
 
                                 # DO NOT TOUCH THESE ENPOINTS #
